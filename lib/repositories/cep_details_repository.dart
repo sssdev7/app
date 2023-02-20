@@ -1,15 +1,12 @@
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:app_cep/models/cep_details.dart';
-import 'package:app_cep/controllers/controller.dart';
-import 'package:get/get.dart';
 
 const itemsListKey = 'details_list';
 
 class CepDetailsRepository {
 
   late SharedPreferences sharedPreferences;
-  final controller = Get.put(Controller());
 
   Future<List<CepDetails>> getHistoricItems() async {
     sharedPreferences = await SharedPreferences.getInstance();
@@ -19,7 +16,7 @@ class CepDetailsRepository {
   }
 
   void saveHistoricItems (List<CepDetails> historicItems) {
-    final String jsonString = json.encode(controller.historicItems);
+    final String jsonString = json.encode(historicItems);
     sharedPreferences.setString(itemsListKey, jsonString);
 
   }

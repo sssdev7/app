@@ -1,4 +1,4 @@
-import 'package:app_cep/controllers/controller.dart';
+import 'package:app_cep/controllers/cep_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:app_cep/widgets/historic_item.dart';
 import 'package:app_cep/models/cep_details.dart';
@@ -9,12 +9,11 @@ class HistoricPage extends StatelessWidget {
   HistoricPage({Key? key}) : super(key: key);
 
   final CepDetailsRepository cepDetailsRepository = CepDetailsRepository();
-  final controller = Get.put(Controller());
+  final controller = Get.find<Controller>();
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<Controller>(
-      init: Controller(),
       builder: (_) {
         cepDetailsRepository.getHistoricItems().then((value) {
           controller.historicItems = value;

@@ -1,4 +1,5 @@
-import 'package:app_cep/controllers/controller.dart';
+import 'package:app_cep/controllers/pages_controller.dart';
+import 'package:app_cep/controllers/cep_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:app_cep/models/cep_details.dart';
 import 'package:get/get.dart';
@@ -6,7 +7,8 @@ import 'package:get/get.dart';
 class CepDetailsPage extends StatelessWidget {
   CepDetailsPage({Key? key, required this.cep}) : super(key: key);
 
-  final controller = Get.put(Controller());
+  final pageController = Get.find<PagesController>();
+  final cepController = Get.put(CepController());
   final String cep;
 
   @override
@@ -14,7 +16,7 @@ class CepDetailsPage extends StatelessWidget {
     return Scaffold(
         backgroundColor: Colors.white,
         body: FutureBuilder<Map>(
-            future: controller.getCep(cep),
+            future: cepController.getCep(cep),
             builder: (context, snapshot) {
               switch(snapshot.connectionState) {
                 case ConnectionState.none:
@@ -52,7 +54,7 @@ class CepDetailsPage extends StatelessWidget {
                       ddd: snapshot.data?['ddd'],
                     );
 
-                    controller.addAtHistoric(newItem);
+                    cepController.addAtHistoric(newItem);
 
                     return Column(
                       children: [
@@ -70,7 +72,7 @@ class CepDetailsPage extends StatelessWidget {
                           child: TextButton(
                             onPressed: () async {
                                 final Uri url = Uri.parse('https://www.google.com.br/maps/place/${newItem.cid},+${newItem.uf},+${newItem.cep}/');
-                                controller.openUrl(url);
+                                pageController.openUrl(url);
                             },
                             child: const Text(
                               "Encontre no mapa",

@@ -4,11 +4,10 @@ import 'package:app_cep/repositories/cep_details_repository.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
-import 'package:url_launcher/url_launcher.dart';
 
-class Controller extends GetxController{
+class CepController extends GetxController{
 
-  Controller();
+  CepController();
   CepDetailsRepository cepDetailsRepository = CepDetailsRepository();
   late List<CepDetails> historicItems;
 
@@ -25,15 +24,4 @@ class Controller extends GetxController{
     return json.decode(response.body);
   }
 
-  Future<void> openUrl(url) async {
-    try {
-      await launchUrl(url);
-    } on Error {
-      return;
-    }
-
-    /*if (!await launchUrl(url)) {
-      null;
-    }*/
-  }
 }

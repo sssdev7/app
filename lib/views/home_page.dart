@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:app_cep/views/cep_details_page.dart';
 import 'package:get/get.dart';
-import 'package:app_cep/controllers/controller.dart';
+import 'package:app_cep/controllers/pages_controller.dart';
 
 final Uri url = Uri.parse('https://cepsbrasil.com.br/blog/o-que-e-o-cep/');
 
@@ -9,7 +9,7 @@ class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
 
   final TextEditingController searchController = TextEditingController();
-  final controller = Get.put(Controller());
+  final controller = Get.put(PagesController());
   late final String? errorText;
 
   @override
