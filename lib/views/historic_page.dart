@@ -9,11 +9,11 @@ class HistoricPage extends StatelessWidget {
   HistoricPage({Key? key}) : super(key: key);
 
   final CepDetailsRepository cepDetailsRepository = CepDetailsRepository();
-  final controller = Get.find<Controller>();
+  final controller = Get.find<CepController>();
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<Controller>(
+    return GetBuilder<CepController>(
       builder: (_) {
         cepDetailsRepository.getHistoricItems().then((value) {
           controller.historicItems = value;
